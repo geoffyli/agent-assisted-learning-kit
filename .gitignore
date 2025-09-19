@@ -1,0 +1,22 @@
+# Development files
+*.log
+*.tmp
+.DS_Store
+
+# Backup files
+*~
+*.bak
+
+# Test outputs
+test-results/
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+
+# sync scripts
+sync-to-vault.sh
