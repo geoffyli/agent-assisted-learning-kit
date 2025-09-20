@@ -8,7 +8,7 @@ This project provides a structured framework for learning with AI agents, design
 
 ## Features
 
-- **Three-Phase Learning Workflow**: SCOPE → STRUCTURE → STUDY
+- **Three-Phase Learning Workflow**: SCOPE → PLAN → STUDY
 - **Vault Integration**: Seamlessly creates and organizes notes following vault standards
 - **Interactive Learning**: AI-guided step-by-step learning
 - **Progress Tracking**: Session management and learning progress monitoring
@@ -36,7 +36,7 @@ This project provides a structured framework for learning with AI agents, design
 ### 1. SCOPE Phase
 Define what to learn, gather resources, set goals
 
-### 2. STRUCTURE Phase  
+### 2. PLAN Phase  
 Create knowledge framework, learning path, and MOC structure
 
 ### 3. STUDY Phase

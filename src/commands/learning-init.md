@@ -90,7 +90,7 @@ You are helping the user create a structured learning session. Follow these phas
 - Create files with real content based on user responses:
   * `learning-spec.md` - Complete specification with all gathered details (goals, scope, criteria)
   * `resources.md` - Organized list of specific resources user mentioned
-  * `learning-plan.md` - Basic structure ready for STRUCTURE phase with integrated progress tracking
+  * `learning-plan.md` - Basic structure ready for PLAN phase with integrated progress tracking
 
 **Template Processing Instructions for SCOPE Phase:**
 - Load `src/templates/learning-spec-template.md` and `src/templates/resources-template.md`
@@ -138,13 +138,13 @@ You are helping the user create a structured learning session. Follow these phas
   * Session name and location in `learn/` directory
   * Confirmation that specification is complete and ready
   * Brief summary of learning goals and scope
-- **DO NOT** proceed to planning, structure creation, or any other phases
+- **DO NOT** proceed to planning, plan creation, or any other phases
 - **DO NOT** automatically run next learning commands
-- Wait for explicit user instruction to proceed to structure phase
+- Wait for explicit user instruction to proceed to plan phase
 
 **3.2. Next Steps Guidance**
 - Explain that the specification phase is complete
-- Tell user they can now proceed to the structure phase when ready
+- Tell user they can now proceed to the plan phase when ready
 - Mention they can review and modify the generated specifications if needed
 
 ---
@@ -174,4 +174,4 @@ You are helping the user create a structured learning session. Follow these phas
 - Complete specification generated from user interaction
 - All files contain real content (no empty templates)
 - User has clear understanding of what was created
-- Ready for next phase (structure) when user chooses to proceed
+- Ready for next phase (plan) when user chooses to proceed

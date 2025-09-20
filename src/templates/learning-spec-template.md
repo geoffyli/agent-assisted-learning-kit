@@ -62,4 +62,4 @@ tags:
 - [ ] Time estimate is realistic
 - [ ] All user questions answered during specification process
 
-**Ready for Structure Phase**: This specification is complete and ready for learning path creation.
+**Ready for Plan Phase**: This specification is complete and ready for learning path creation.

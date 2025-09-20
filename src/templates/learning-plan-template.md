@@ -1,80 +1,141 @@
----
-parent: "[[Learning Sessions Index]]"
-tags:
----
-
 # {TOPIC_NAME} - Learning Plan & Progress
 
-**Status**: Ready for Structure Phase  
 **Created**: {CREATION_DATE}  
 **Last Updated**: {CREATION_DATE}
 
-## Session Overview
+---
 
-### Learning Path Status
-This learning plan will be filled during the STRUCTURE phase based on the completed specification.
+## Learning Overview
 
-### Progress Summary
-- **Specification Phase**: ✅ Complete
-- **Structure Phase**: ⏳ Pending
-- **Study Phase**: ⏳ Pending
-- **Completion**: ⏳ Pending
+### Learning Sequence Summary
+<!-- 
+DESCRIPTION: Provide a high-level overview of the learning journey, showing how phases connect and build upon each other.
+
+CONTENT TO INCLUDE:
+- Brief description of each learning phase and its purpose
+- How phases build upon previous knowledge
+- Overall learning progression logic
+- Key dependencies between phases
+
+FORMAT: Use bullet points with phase names and brief descriptions
+
+EXAMPLE:
+- **Phase 1 - React Foundation**: Establish core concepts and vocabulary for React development
+- **Phase 2 - React Component Building**: Learn to create and structure React components, building on foundation concepts
+- **Phase 3 - React State Management**: Implement complex state handling, requiring solid component knowledge from Phase 2
+- ...
+-->
+
+### Knowledge Vault Integration Strategy
+<!--
+DESCRIPTION: Document the plan for organizing learning content within the knowledge vault using Maps of Content (MOC).
+
+CONTENT TO INCLUDE:
+- MOC note for this learning, and type (existing or newly created)
+- MOC structure and organization approach
+- Related Notes in vault that coult have connections with this learning topic.  
+
+FORMAT: Use bullet points paragraphs with specific details
+
+EXAMPLE:
+- MOC: React.md (newly created)
+- MOC Architecture
+    - React.md
+        - React Componenets.md
+        - React State Management.md
+        - ...
+- Related Contents
+    - Frontend Dev.md
+    - Vue.md
+    - ...
+-->
 
 ---
 
-## Learning Structure
-<!-- To be filled during STRUCTURE phase -->
+### Overall Learning Progress Tracking
+<!--
+DESCRIPTION: Track completion status of each learning phase with simple progress indicators.
 
-### Main Learning Phases
-<!-- Detailed phases with topics and checkpoints -->
+CONTENT TO INCLUDE:
+- List of all learning phases with completion status
+- Current phase being worked on
 
-### Knowledge Organization
+FORMAT: Use bullet list with phase names and status indicators
 
-#### MOC Integration
-<!-- Main MOC location and structure -->
+STATUS INDICATORS:
+- Complete
+- In Progress  
+- Pending
+- Paused
 
-#### Planned Notes Structure
-<!-- Subnotes and organization -->
+EXAMPLE:
+- **Phase 1 - React Foundation**: Complete
+- **Phase 2 - React Component Building**: In Progress  
+- **Phase 3 - React State Management**: Pending
+- ...
 
----
+-->
 
-## Progress Tracking
-<!-- Updated throughout STUDY phase -->
-
-### Session Log
-#### {CREATION_DATE} - Session Initialized
-- Learning session created through interactive specification
-- Complete specification gathered and resources organized
-- Ready for structure phase
-
-### Current Focus
-<!-- Active learning area -->
-
-### Completed Topics
-<!-- Completed areas with insights -->
-
-### Challenges & Solutions
-<!-- Issues encountered and resolutions -->
-
-### Key Insights
-<!-- Important discoveries and breakthroughs -->
-
-### Resource Effectiveness
-<!-- Notes on resource quality and usefulness -->
 
 ---
 
-## Integration & Connections
+## Learning Plan
+<!-- Individual learning phases will be generated dynamically by plan command -->
+<!-- Each phase follows this standardized format: -->
 
-### Vault Connections
-<!-- Links to existing knowledge -->
+<!-- 
+COMPLETE PHASE EXAMPLES:
 
-### Cross-Domain Applications
-<!-- Applications in other areas -->
+### Learning Phase 1: React Foundation
 
-### Future Learning Opportunities
-<!-- Related topics for future exploration -->
+#### Contents
+- Understand what React is and its core philosophy
+- Learn JSX syntax and how it differs from HTML
+- Set up React development environment
+- Create your first React application
+- Understand the virtual DOM concept
+
+#### Checkpoints
+- [ ] Can explain what React is and why it's useful
+- [ ] Successfully set up local React development environment
+- [ ] Created and rendered your first React component
+- [ ] Can write basic JSX syntax without errors
+- [ ] Understand the difference between JSX and HTML
+
+#### Knowledge Vault Integration
+Create "React Fundamentals.md" note in docs/Knowledge/Tech/ with parent set to MOC React.md. Include subsections for React philosophy, JSX syntax, virtual DOM, and development setup. Link to existing JavaScript notes using wikilinks [[JavaScript ES6]] and [[Web Development]].
+
+#### Resources
+- [React Getting Started guide](https://react.dev/learn)
+- [**Video Course**: "React Fundamentals" sections 1-2 (Udemy)](https://react.dev/learn/thinking-in-react)
+- [**Book**: "Learning React" chapters 1-3](https://www.youtube.com/watch?v=SqcY0GlETPk)
+- ...
+
+### Learning Phase 2: React Components
+
+#### Contents
+- Learn difference between functional and class components
+- Understand props and how to pass data between components
+- Practice creating reusable components
+- Master component composition patterns
+- Implement conditional rendering in components
+
+#### Checkpoints
+- [ ] Can create both functional and class components
+- [ ] Successfully implemented prop passing between parent and child components
+- [ ] Built 3 reusable components from scratch
+- [ ] Implemented conditional rendering in multiple scenarios
+- [ ] Understand component composition best practices
+
+#### Knowledge Vault Integration
+Create "React Components.md" note in docs/Knowledge/Tech/ with parent set to MOC React.md. Include subsections for functional vs class components, props, composition patterns, and conditional rendering. Connect to "React Fundamentals.md" using wikilinks and reference [[JavaScript Functions]].
+
+#### Resources
+- [passing-props-to-a-component](https://react.dev/learn/passing-props-to-a-component)
+- ...
+- 
+-->
 
 ---
 
-**Next Phase**: Ready for structure creation and learning path design.
+**Next Phase**: Ready for plan creation and learning path design.
