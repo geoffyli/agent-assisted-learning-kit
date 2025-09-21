@@ -6,9 +6,98 @@ Transform completed learning specification into detailed, executable learning pl
 ## Command Description
 This command takes a completed SCOPE phase session and creates comprehensive structural planning through interactive design. It bridges the gap between "what to learn" and "exactly how to execute the learning" with full vault integration.
 
+## Command Usage
+```
+learning-plan [SESSION_IDENTIFIER]
+```
+
+**SESSION_IDENTIFIER** can be:
+- Full session path: `/vault/learn/2024-09-21 React Development`
+- Session name: `"2024-09-21 React Development"`
+- Topic name: `"React Development"` (finds session by topic)
+- Partial match: `"React"` (with disambiguation if multiple matches)
+
+**Examples:**
+```
+learning-plan "React Development"
+learning-plan "2024-09-21 React Development"
+learning-plan "Python"
+```
+
 ## Agent Instructions
 
 You are helping the user create a structured learning plan from their completed specification. Follow these phases exactly:
+
+---
+
+## INPUT PARAMETER PROCESSING
+
+**Parameter Handling:**
+- Accept SESSION_IDENTIFIER as command parameter
+- SESSION_IDENTIFIER can be: full path, session name, topic name, or partial match
+- If no parameter provided, list available learning sessions and ask user to select
+- Handle disambiguation when multiple sessions match the identifier
+
+**Session Discovery Process:**
+1. Execute: `.agent/scripts/find-learning-session.sh --json "$SESSION_IDENTIFIER"`
+2. Parse JSON output for: `success`, `session_path`, `session_name`, `status`, `matches`, `available_sessions`, `error`
+3. Filter for sessions that have completed SCOPE phase (have learning-spec.md and resources.md)
+
+**Session Discovery Results:**
+
+**SUCCESS (success = true):**
+- Set SESSION_PATH to the returned session_path
+- Set SESSION_NAME to the returned session_name  
+- Verify session is ready for PLAN phase (has learning-spec.md and resources.md)
+- Log: "Found learning session: [SESSION_NAME]"
+- Proceed to Phase 0
+
+**DISAMBIGUATION NEEDED (disambiguation_needed = true):**
+- STOP and present disambiguation menu to user:
+  
+  ```
+  Multiple learning sessions match '[SESSION_IDENTIFIER]':
+  
+  [For each match in matches object that has completed SCOPE]
+  [N]) [Session Name] - Status: [Status]
+  
+  Which session would you like to plan? (Enter number)
+  ```
+  
+- WAIT for user selection
+- Re-run session discovery with the selected session name
+- Proceed to Phase 0 with confirmed session
+
+**NO SESSIONS FOUND (success = false, no disambiguation_needed):**
+- STOP execution and inform user of the error
+- Present available sessions that have completed SCOPE phase:
+  
+  ```
+  [Error message from script]
+  
+  Available learning sessions ready for planning:
+  [For each session with SCOPE complete]
+  - [Session Name] - Status: [Status]
+  
+  Please specify a valid session identifier.
+  ```
+  
+- Do NOT proceed to Phase 0
+
+**NO IDENTIFIER PROVIDED:**
+- STOP and present all available sessions ready for planning:
+  
+  ```
+  Available learning sessions ready for planning:
+  [For each session with SCOPE complete]
+  [N]) [Session Name] - Status: [Status]
+  
+  Which session would you like to plan? (Enter number or session name)
+  ```
+  
+- WAIT for user selection
+- Re-run session discovery with the selected identifier
+- Proceed to Phase 0 with confirmed session
 
 ---
 
@@ -388,3 +477,14 @@ For each learning phase created in Phase 2, follow this comprehensive workflow:
 - **Complete learning-plan.md ready for STUDY phase** with all sections populated progressively
 - Ready for post-PLAN MOC creation/modification
 - All planned outputs follow AGENTS.md frontmatter, naming, and content structure requirements
+
+---
+
+## Integration with Learning System
+
+**Command Parameters:** SESSION_IDENTIFIER (full path, session name, topic name, or partial match)
+**Prerequisites:** Completed SCOPE phase with learning-spec.md and resources.md in target session
+**Session Discovery:** Uses find-learning-session.sh script for intelligent session identification and disambiguation
+**Outputs:** Fully populated learning-plan.md with comprehensive learning phases, MOC strategy, and progress tracking
+**Next Steps:** Ready for STUDY phase execution with learning-study command
+**Continuity:** Builds on SCOPE phase outputs and prepares for STUDY phase interactive learning

@@ -6,9 +6,8 @@ tags:
 # {TOPIC_NAME} - Learning Resources
 
 **Compiled**: {CREATION_DATE}  
-**Resource Count**: {RESOURCE_COUNT}
 
-## Primary Sources
+## Primary Learning Materials
 
 ### Official Documentation
 {OFFICIAL_DOCUMENTATION}
@@ -16,63 +15,22 @@ tags:
 ### Books & Written Materials
 {BOOKS_MATERIALS}
 
-### Structured Courses
-{STRUCTURED_COURSES}
+### Video Courses & Tutorials
+{VIDEO_CONTENT}
 
-## Video Content
+### Interactive Practice
+{PRACTICE_RESOURCES}
 
-### Tutorial Videos
-{TUTORIAL_VIDEOS}
+## Additional Resources
 
-### Conference Talks & Presentations
-{CONFERENCE_TALKS}
+### Supplementary Materials
+{SUPPLEMENTARY_MATERIALS}
 
-### Video Course Series
-{VIDEO_COURSES}
+## Tools & Environment
 
-## Hands-On Practice
+### Required Software & Setup
+{TOOLS_ENVIRONMENT}
 
-### Practice Labs & Exercises
-{PRACTICE_LABS}
+## Resource Notes
 
-### Projects to Build
-{PROJECTS_TO_BUILD}
-
-### Interactive Platforms
-{INTERACTIVE_PLATFORMS}
-
-## Additional References
-
-### Blog Posts & Articles
-{BLOG_ARTICLES}
-
-### Community Resources
-{COMMUNITY_RESOURCES}
-
-### Related Topics for Future Exploration
-{RELATED_TOPICS}
-
-## Tools & Environment Setup
-
-### Required Software
-{REQUIRED_SOFTWARE}
-
-### Development Environment
-{DEVELOPMENT_ENVIRONMENT}
-
-### Practice Platforms & Services
-{PRACTICE_PLATFORMS}
-
-## Resource Priority
-
-### Phase 1 - Foundation
-{PHASE1_RESOURCES}
-
-### Phase 2 - Implementation
-{PHASE2_RESOURCES}
-
-### Phase 3 - Advanced/Optional
-{PHASE3_RESOURCES}
-
-## Resource Quality Notes
-{RESOURCE_QUALITY_NOTES}
+{RESOURCE_NOTES}

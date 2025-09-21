@@ -6,9 +6,61 @@ Initialize a new learning session through interactive specification gathering, c
 ## Command Description
 This command creates a comprehensive learning session in the `learn/` directory through guided interaction. Instead of empty templates, it builds a complete specification by asking targeted questions and generating detailed learning plans based on user responses.
 
+## Command Usage
+```
+learning-init [TOPIC_NAME]
+```
+
+**TOPIC_NAME** should be:
+- A descriptive topic name for your learning session
+- Will be used to create session directory and identify the learning topic
+- Examples: `"React Development"`, `"Python Machine Learning"`, `"Docker Containerization"`
+
+**Examples:**
+```
+learning-init "React Development"
+learning-init "Python Machine Learning" 
+learning-init "Advanced JavaScript"
+```
+
 ## Agent Instructions
 
 You are helping the user create a structured learning session. Follow these phases exactly:
+
+---
+
+## INPUT PARAMETER PROCESSING
+
+**Parameter Handling:**
+- Accept TOPIC_NAME as command parameter
+- TOPIC_NAME should be a descriptive learning topic name
+- If no parameter provided, ask user to provide the topic name
+
+**Topic Name Validation:**
+- If TOPIC_NAME provided:
+  - Set TOPIC_NAME variable for use throughout command
+  - Proceed to Phase 0
+- If no TOPIC_NAME provided:
+  - STOP and ask user for topic name:
+    
+    ```
+    No learning topic specified. 
+    
+    What topic would you like to learn?
+    Please provide a descriptive topic name (e.g., "React Development", "Python Machine Learning"):
+    ```
+    
+  - WAIT for user input
+  - Set TOPIC_NAME to user's response
+  - Proceed to Phase 0
+
+**Topic Name Processing:**
+- Use TOPIC_NAME throughout the command for personalization
+- TOPIC_NAME will be used in:
+  - Script validation calls
+  - Session directory creation  
+  - Template placeholder replacement
+  - User interaction messaging
 
 ---
 
@@ -35,19 +87,19 @@ You are helping the user create a structured learning session. Follow these phas
 
 **1.1. Learning Goal Clarification**
 - STOP and ASK USER specific questions about their learning objectives:
-  * "What specific skills do you want to gain from learning {TOPIC}? A) Practical implementation ability, B) Theoretical understanding, C) Both theory and practice, D) Other (please specify)"
+  * "What specific skills do you want to gain from learning [TOPIC_NAME]? A) Practical implementation ability, B) Theoretical understanding, C) Both theory and practice, D) Other (please specify)"
   * "After completing this learning session, what should you be able to do, build, or explain?"
   * "What's your primary motivation for learning this? A) Work/career needs, B) Personal project, C) Academic requirement, D) General interest"
 
 **1.2. Scope Definition**
 - STOP and ASK USER about boundaries and focus:
-  * "What specific aspects of {TOPIC} should be included? (List the key areas you want to cover)"
+  * "What specific aspects of [TOPIC_NAME] should be included? (List the key areas you want to cover)"
   * "What aspects should be excluded to keep the scope manageable?"
   * "How deep should we go? A) Basic/introductory level, B) Intermediate practical level, C) Advanced/expert level"
 
 **1.3. Background Assessment**
 - STOP and ASK USER about their current knowledge:
-  * "What do you already know about {TOPIC} or related concepts?"
+  * "What do you already know about [TOPIC_NAME] or related concepts?"
   * "Have you tried learning this before? If so, what worked/didn't work?"
   * "What related technologies or concepts are you familiar with?"
 
@@ -58,7 +110,7 @@ You are helping the user create a structured learning session. Follow these phas
 
 - **Resource Research & Recommendation**:
   * If user provides no materials OR user provides some materials but wants more recommendations:
-    - Research high-quality learning resources for {TOPIC} (official docs, recommended courses, books, tutorials)
+    - Research high-quality learning resources for [TOPIC_NAME] (official docs, recommended courses, books, tutorials)
     - STOP and present organized list of recommended resources with brief descriptions
     - Ask user: "I've found these recommended learning resources. Please review and let me know: A) Use these recommendations, B) Add specific ones to your list, C) You'll add resources manually later"
   * WAIT for user confirmation before proceeding
@@ -113,7 +165,7 @@ You are helping the user create a structured learning session. Follow these phas
 - `{COMPLETION_INDICATORS}` - How user will know they've succeeded
 - `{PRACTICAL_DEMONSTRATION}` - Project/outcome to prove mastery
 - `{MILESTONES_CHECKPOINTS}` - Specific progress markers user wants
-- Plus all resources placeholders: `{OFFICIAL_DOCUMENTATION}`, `{BOOKS_MATERIALS}`, `{STRUCTURED_COURSES}`, etc.
+- Plus all resources placeholders: `{OFFICIAL_DOCUMENTATION}`, `{BOOKS_MATERIALS}`, `{VIDEO_CONTENT}`, `{PRACTICE_RESOURCES}`, `{SUPPLEMENTARY_MATERIALS}`, `{TOOLS_ENVIRONMENT}`, `{RESOURCE_NOTES}`
 
 **Content Processing Guidelines:**
 - Convert user responses into structured, actionable content
