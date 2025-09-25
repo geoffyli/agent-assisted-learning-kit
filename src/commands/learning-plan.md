@@ -28,6 +28,9 @@ learning-plan "Python"
 
 You are helping the user create a structured learning plan from their completed specification. Follow these phases exactly:
 
+- When filling the `learning-plan-template.md`, make sure to remove the instructional comments (i.e., the text within `<!-- -->`) from the template.
+
+
 ---
 
 ## INPUT PARAMETER PROCESSING
