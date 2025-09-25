@@ -138,4 +138,22 @@ Create "React Components.md" note in docs/Knowledge/Tech/ with parent set to MOC
 
 ---
 
+## For Review
+
+<!--
+DESCRIPTION: A list of topics that you want to review later.
+
+CONTENT TO INCLUDE:
+- The learning phase of the topic.
+- The name of the topic.
+- A link to the topic/note (if it exists).
+- A brief note about why it was marked for review.
+
+EXAMPLE:
+- **Phase 1**: React Hooks - Needs clarification on the rules of hooks.
+- **Phase 2**: [[React Components]] - Needs more practice with component composition.
+-->
+
+---
+
 **Next Phase**: Ready for plan creation and learning path design.
