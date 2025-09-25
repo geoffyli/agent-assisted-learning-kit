@@ -409,7 +409,7 @@ For each learning phase created in Phase 2, follow this comprehensive workflow:
 ## Integration with Vault Standards
 - **MANDATORY**: Follow all `AGENTS.md` specifications for frontmatter, wikilinks, file naming, and content structure
 - **Frontmatter**: Include required `parent` field, preserve existing `tags`, use proper wikilink syntax with quotes
-- **File Naming**: Use "Broader Concept + Specific Topic" pattern, Title Case, avoid special characters
+- **File Naming**: Use "Broader Concept + Specific Topic" pattern, Title Case, avoid special characters. Do not include "MOC" in the filename (e.g., use `React.md` instead of `React MOC.md`).
 - **MOC Integration**: Follow flat organization with wikilinks, maintain bidirectional connections
 - **Content Structure**: One H1 heading matching filename, sequential heading levels (##, ###, ####), no task lists or emojis
 

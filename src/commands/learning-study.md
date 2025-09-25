@@ -251,7 +251,7 @@ After covering all content items in the phase:
 - Follow the specific note creation instructions provided
 - Create notes according to AGENTS.md standards:
   - Proper frontmatter with parent field
-  - Correct file naming conventions
+  - Correct file naming conventions: Follow the naming conventions from the learning plan, ensuring not to include "MOC" in filenames.
   - Appropriate folder placement
   - Wikilink integration
 
