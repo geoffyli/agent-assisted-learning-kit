@@ -210,11 +210,11 @@ if [[ -d "$SESSION_PATH" ]]; then
             ERRORS+=("\"Learning plan does not contain populated learning phases\"")
         else
             # Check that phases have required sections
-            local phases_count=$(grep -c "^### Learning Phase [0-9]*:" "$LEARNING_PLAN_PATH")
-            local contents_count=$(grep -c "^#### Contents" "$LEARNING_PLAN_PATH")
-            local resources_count=$(grep -c "^#### Resources" "$LEARNING_PLAN_PATH")
-            local checkpoints_count=$(grep -c "^#### Checkpoints" "$LEARNING_PLAN_PATH")
-            local vault_count=$(grep -c "^#### Knowledge Vault Integration" "$LEARNING_PLAN_PATH")
+            phases_count=$(grep -c "^### Learning Phase [0-9]*:" "$LEARNING_PLAN_PATH")
+            contents_count=$(grep -c "^#### Contents" "$LEARNING_PLAN_PATH")
+            resources_count=$(grep -c "^#### Resources" "$LEARNING_PLAN_PATH")
+            checkpoints_count=$(grep -c "^#### Checkpoints" "$LEARNING_PLAN_PATH")
+            vault_count=$(grep -c "^#### Knowledge Vault Integration" "$LEARNING_PLAN_PATH")
             
             if [[ $contents_count -lt $phases_count ]]; then
                 ERRORS+=("\"Learning phases missing Contents sections\"")

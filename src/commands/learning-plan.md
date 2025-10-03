@@ -42,45 +42,49 @@ You are helping the user create a structured learning plan from their completed 
 - Handle disambiguation when multiple sessions match the identifier
 
 **Session Discovery Process:**
-1. Execute: `.agent/scripts/find-learning-session.sh --json "$SESSION_IDENTIFIER"`
-2. Parse JSON output for: `success`, `session_path`, `session_name`, `status`, `matches`, `available_sessions`, `error`
-3. Filter for sessions that have completed SCOPE phase (have learning-spec.md and resources.md)
+1. Execute: `ls "$VAULT_ROOT/learn/"` to list all available learning sessions
+2. Analyze the directory listing and match against user-provided SESSION_IDENTIFIER
+3. STOP and report to user: "I found learning session: [SESSION_NAME]" 
+4. WAIT for user confirmation before proceeding
+5. Verify the confirmed session has completed SCOPE phase (has learning-spec.md and resources.md)
 
 **Session Discovery Results:**
 
-**SUCCESS (success = true):**
-- Set SESSION_PATH to the returned session_path
-- Set SESSION_NAME to the returned session_name  
+**USER CONFIRMATION RECEIVED:**
+- Set SESSION_PATH to the confirmed session directory path  
+- Set SESSION_NAME to the confirmed session name
 - Verify session is ready for PLAN phase (has learning-spec.md and resources.md)
-- Log: "Found learning session: [SESSION_NAME]"
+- Log: "Proceeding with learning session: [SESSION_NAME]"
 - Proceed to Phase 0
 
-**DISAMBIGUATION NEEDED (disambiguation_needed = true):**
-- STOP and present disambiguation menu to user:
+**MULTIPLE MATCHES FOUND:**
+- STOP and present options to user:
   
   ```
   Multiple learning sessions match '[SESSION_IDENTIFIER]':
   
-  [For each match in matches object that has completed SCOPE]
-  [N]) [Session Name] - Status: [Status]
+  1) [Session Name 1]
+  2) [Session Name 2] 
+  3) [Session Name 3]
   
-  Which session would you like to plan? (Enter number)
+  Which session would you like to plan? Please specify the exact session name or number.
   ```
   
 - WAIT for user selection
 - Re-run session discovery with the selected session name
 - Proceed to Phase 0 with confirmed session
 
-**NO SESSIONS FOUND (success = false, no disambiguation_needed):**
-- STOP execution and inform user of the error
-- Present available sessions that have completed SCOPE phase:
+**NO SESSIONS FOUND:**
+- STOP execution and inform user that no matching sessions were found
+- Present available sessions in the learn/ directory:
   
   ```
-  [Error message from script]
+  No learning sessions found matching '[SESSION_IDENTIFIER]'
   
-  Available learning sessions ready for planning:
-  [For each session with SCOPE complete]
-  - [Session Name] - Status: [Status]
+  Available learning sessions:
+  [List all directories from ls learn/ output]
+  - [Session Name 1]
+  - [Session Name 2]
   
   Please specify a valid session identifier.
   ```
@@ -251,10 +255,12 @@ For each learning phase created in Phase 2, follow this comprehensive workflow:
 - Follow template format: bullet list of learning contents
 
 **3.2.2. Phase Resource Allocation**
-- Review available resources from `resources.md`
+- Read the `resources.md` index file to understand available resources in `Resources/` folder
+- Review the simple bullet list format: `- filename.md: Description`
 - Consider the specific learning objectives just defined for this phase
-- Select appropriate resources that support this phase's content
-- Align resources with phase learning depth and complexity
+- Select appropriate resource files that support this phase's content by creating references
+- **IMPORTANT**: Do NOT copy resource content - only create file references in format `Resources/filename.md`
+- Align resource selections with phase learning depth and complexity
 
 **3.2.3. Phase Vault Integration Planning**
 - Plan specific note organization for this phase's content
@@ -282,9 +288,9 @@ For each learning phase created in Phase 2, follow this comprehensive workflow:
   - [Continue for all objectives...]
   
   #### Resources
-  - [Resource type]: [Specific resource with details]
-  - [Resource type]: [Specific resource with details]
-  - [Continue for all resources...]
+  - **Primary**: `Resources/filename.md` - Brief relevance to this phase
+  - **Practice**: `Resources/filename.md` - How it supports phase objectives
+  - **Reference**: `Resources/filename.md` - Additional context when needed
   
   #### Knowledge Vault Integration
   [Note organization plan for this phase]
@@ -487,7 +493,7 @@ For each learning phase created in Phase 2, follow this comprehensive workflow:
 
 **Command Parameters:** SESSION_IDENTIFIER (full path, session name, topic name, or partial match)
 **Prerequisites:** Completed SCOPE phase with learning-spec.md and resources.md in target session
-**Session Discovery:** Uses find-learning-session.sh script for intelligent session identification and disambiguation
+**Session Discovery:** Uses simple ls command with agent analysis and user confirmation for session identification
 **Outputs:** Fully populated learning-plan.md with comprehensive learning phases, MOC strategy, and progress tracking
 **Next Steps:** Ready for STUDY phase execution with learning-study command
 **Continuity:** Builds on SCOPE phase outputs and prepares for STUDY phase interactive learning

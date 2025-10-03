@@ -4,7 +4,7 @@
 Initialize a new learning session through interactive specification gathering, creating complete learning plans.
 
 ## Command Description
-This command creates a comprehensive learning session in the `learn/` directory through guided interaction. Instead of empty templates, it builds a complete specification by asking targeted questions and generating detailed learning plans based on user responses.
+This command creates a comprehensive learning session in the `learn/` directory through guided interaction. It will instruct agent to interact with user, asking targeted questions, and generate detailed learning specification based on user responses.
 
 ## Command Usage
 ```
@@ -67,7 +67,7 @@ You are helping the user create a structured learning session. Follow these phas
 ## PHASE 0: PRE-VALIDATION
 
 **0.1. Run Prerequisites Validation**
-- Execute: `.agent/scripts/validate-learning-prerequisites.sh --json "$TOPIC_NAME"`
+- Execute: `.agent/scripts/validate-init-prerequisites.sh --json "$TOPIC_NAME"`
 - **Script Purpose**: Validates vault structure, checks for existing sessions, verifies topic name validity
 - Parse JSON output for: `success`, `errors`, `warnings`, `current_path`
 
@@ -103,21 +103,10 @@ You are helping the user create a structured learning session. Follow these phas
   * "Have you tried learning this before? If so, what worked/didn't work?"
   * "What related technologies or concepts are you familiar with?"
 
-**1.4. Resources & Environment**
-- STOP and ASK USER about available materials:
-  * "Do you have specific learning materials in mind? Please list any documentation, courses, books, or tutorials you want to use"
-  * "Do you have access to practice environments or tools needed for hands-on work?"
-
-- **Resource Research & Recommendation**:
-  * If user provides no materials OR user provides some materials but wants more recommendations:
-    - Research high-quality learning resources for [TOPIC_NAME] (official docs, recommended courses, books, tutorials)
-    - STOP and present organized list of recommended resources with brief descriptions
-    - Ask user: "I've found these recommended learning resources. Please review and let me know: A) Use these recommendations, B) Add specific ones to your list, C) You'll add resources manually later"
-  * WAIT for user confirmation before proceeding
-  * Include both user-provided AND approved recommended resources in final specification
-
-- **Manual Resource Addition**:
-  * Inform user: "You can manually add more resources to the resources.md file after session creation if you discover additional materials during learning"
+**1.4. Practice Environment**
+- STOP and ASK USER about available tools and setup:
+  * "Do you have access to practice environments or tools needed for hands-on work with [TOPIC_NAME]?"
+  * "What development environment or tools do you plan to use for practicing?"
 
 **1.5. Success Criteria Definition**
 - STOP and ASK USER how they'll measure success:
@@ -133,22 +122,16 @@ You are helping the user create a structured learning session. Follow these phas
 
 **2.1. Generate Learning Session Structure**
 - Run: `.agent/scripts/create-learning-session.sh --json "$TOPIC_NAME"`
-- **Script Purpose**: Creates session directory in `learn/` with proper naming (YYYY-MM-DD Topic Name)
+- **Script Purpose**: Creates session directory and template files in `learn/` with proper naming (YYYY-MM-DD Topic Name)
 - Parse JSON output for: `SESSION_PATH`, `SESSION_NAME`, `FILES_CREATED`
 
-**2.2. Create Complete Specification Files**
+**2.2. Create Complete Specification File**
 - Use gathered information to populate template placeholders
-- Generate comprehensive, actionable content (not empty templates)
-- Create files with real content based on user responses:
-  * `learning-spec.md` - Complete specification with all gathered details (goals, scope, criteria)
-  * `resources.md` - Organized list of specific resources user mentioned
-  * `learning-plan.md` - Basic structure ready for PLAN phase with integrated progress tracking
+- Update `learning-spec.md` with real content based on user responses: Complete specification with all gathered details (goals, scope, criteria)
 
 **Template Processing Instructions for SCOPE Phase:**
-- Load `src/templates/learning-spec-template.md` and `src/templates/resources-template.md`
-- Load `src/templates/learning-plan-template.md` for basic initialization only
-- **Do NOT populate** learning-plan template beyond basic initialization
-- Generate 3 complete files with no remaining placeholders
+- Templates are automatically copied to session directory by `create-learning-session.sh` script with frontmatter removed and renamed to final names: `learning-spec.md`, `resources.md`, and `learning-plan.md`
+- **Do NOT populate** learning-plan.md beyond basic initialization
 
 **Key Template Placeholders to Replace:**
 - `{TOPIC_NAME}` - The learning topic name provided by user
@@ -165,15 +148,27 @@ You are helping the user create a structured learning session. Follow these phas
 - `{COMPLETION_INDICATORS}` - How user will know they've succeeded
 - `{PRACTICAL_DEMONSTRATION}` - Project/outcome to prove mastery
 - `{MILESTONES_CHECKPOINTS}` - Specific progress markers user wants
-- Plus all resources placeholders: `{OFFICIAL_DOCUMENTATION}`, `{BOOKS_MATERIALS}`, `{VIDEO_CONTENT}`, `{PRACTICE_RESOURCES}`, `{SUPPLEMENTARY_MATERIALS}`, `{TOOLS_ENVIRONMENT}`, `{RESOURCE_NOTES}`
 
 **Content Processing Guidelines:**
-- Convert user responses into structured, actionable content
-- Format lists as markdown bulleted lists
-- Ensure all content is specific and actionable
-- Avoid generic or vague statements
-- Include concrete examples when possible
-- Ensure content aligns with user's stated goals and preferences
+
+**Language Transformation Rules:**
+- **Convert first person to specification language**: Transform "I want to learn..." → "Develop knowledge of..."
+- **Use professional documentation tone**: Avoid conversational language, use formal specification style
+- **Remove personal pronouns**: Replace "I am familiar with..." → "Background includes experience with..."
+- **Make content objective**: Transform "I think..." → "Focus areas include..." or "Approach emphasizes..."
+
+**Content Restructuring Standards:**
+- **Learning Goals**: Transform user desires into clear, measurable learning objectives
+- **Background Knowledge**: Reformat experience descriptions into structured skill inventory
+- **Success Criteria**: Convert user hopes into specific, actionable completion indicators
+- **Practice Environment**: Transform availability statements into capability descriptions
+
+**Format Requirements:**
+- Use bullet points for lists and structured information
+- Write in third person or neutral specification language
+- Ensure all content is specific, actionable, and professional
+- Eliminate conversational fillers ("well", "I think", "maybe")
+- Structure content logically within each section
 
 **2.3. Quality Assurance**
 - Verify all mandatory information is included
@@ -190,6 +185,7 @@ You are helping the user create a structured learning session. Follow these phas
   * Session name and location in `learn/` directory
   * Confirmation that specification is complete and ready
   * Brief summary of learning goals and scope
+  * **Important**: Remind user to add learning materials to `Resources/` folder and update `resources.md` index before proceeding to PLAN phase
 - **DO NOT** proceed to planning, plan creation, or any other phases
 - **DO NOT** automatically run next learning commands
 - Wait for explicit user instruction to proceed to plan phase

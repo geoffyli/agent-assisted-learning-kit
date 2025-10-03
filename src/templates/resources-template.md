@@ -5,32 +5,16 @@ tags:
 
 # {TOPIC_NAME} - Learning Resources
 
-**Compiled**: {CREATION_DATE}  
+**Created**: {CREATION_DATE}  
+**Resource Index**: List of available learning materials in the `Resources/` folder.
 
-## Primary Learning Materials
+## Available Resources
 
-### Official Documentation
-{OFFICIAL_DOCUMENTATION}
+- `example-resource.md`: Example resource file description
 
-### Books & Written Materials
-{BOOKS_MATERIALS}
+**Instructions for User:**
+1. Add your learning materials to the `Resources/` folder (transcripts, book excerpts, notes, etc.)
+2. Update this index with a simple bullet list using the format: `- filename.md: Brief description`
+3. Agents will reference these resources during planning and study phases
 
-### Video Courses & Tutorials
-{VIDEO_CONTENT}
-
-### Interactive Practice
-{PRACTICE_RESOURCES}
-
-## Additional Resources
-
-### Supplementary Materials
-{SUPPLEMENTARY_MATERIALS}
-
-## Tools & Environment
-
-### Required Software & Setup
-{TOOLS_ENVIRONMENT}
-
-## Resource Notes
-
-{RESOURCE_NOTES}
+**Note**: Agents will not modify this file or create resource files - this is user-managed content.
