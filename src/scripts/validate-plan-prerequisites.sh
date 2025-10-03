@@ -152,11 +152,16 @@ if [[ -d "$SESSION_PATH" ]]; then
     LEARNING_PLAN_PATH="$SESSION_PATH/learning-plan.md"
     if [[ -f "$LEARNING_PLAN_PATH" ]]; then
         # Check if already has plan content (not just basic template)
-        if grep -q "Main Learning Phases" "$LEARNING_PLAN_PATH" && grep -q "<!-- Topics, objectives, resources, estimated duration -->" "$LEARNING_PLAN_PATH"; then
-            SESSION_STATUS="scope_complete"
-        elif grep -q "Main Learning Phases" "$LEARNING_PLAN_PATH" && ! grep -q "<!-- Topics, objectives, resources, estimated duration -->" "$LEARNING_PLAN_PATH"; then
-            WARNINGS+=("\"Learning plan appears to already have plan content - may overwrite existing plan\"")
-            SESSION_STATUS="plan_exists"
+        # Template has "## Learning Plan" section with example phases in comments
+        # If real phases exist (outside comments), plan is already populated
+        if grep -q "^## Learning Plan" "$LEARNING_PLAN_PATH"; then
+            # Check if actual learning phases exist (not in comments)
+            if grep -q "^### Learning Phase [0-9]*:" "$LEARNING_PLAN_PATH"; then
+                WARNINGS+=("\"Learning plan appears to already have plan content - may overwrite existing plan\"")
+                SESSION_STATUS="plan_exists"
+            else
+                SESSION_STATUS="scope_complete"
+            fi
         else
             ERRORS+=("\"Learning plan format is unexpected - may be corrupted\"")
             SESSION_STATUS="corrupted"
@@ -165,9 +170,9 @@ if [[ -d "$SESSION_PATH" ]]; then
         SESSION_STATUS="missing_files"
     fi
 
-    # Validate session is in correct directory plan
+    # Validate session is in correct directory structure
     if [[ "$SESSION_PATH" != *"/learn/"* ]]; then
-        WARNINGS+=("\"Session is not in expected 'learn/' directory plan\"")
+        WARNINGS+=("\"Session is not in expected 'learn/' directory structure\"")
     fi
 fi
 

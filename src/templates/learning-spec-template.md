@@ -1,8 +1,3 @@
----
-parent: "[[Learning Sessions Index]]"
-tags:
----
-
 # {TOPIC_NAME} - Learning Specification
 
 **Created**: {CREATION_DATE}  

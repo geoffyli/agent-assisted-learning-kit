@@ -242,40 +242,21 @@ main() {
         exit 1
     fi
     
-    # Copy and clean learning templates
+    # Copy learning templates
     log "Copying learning templates..."
     local script_dir templates_dir
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     templates_dir="$script_dir/../templates"
-    
+
     if [[ -d "$templates_dir" ]]; then
-        # Function to remove frontmatter from template file
-        clean_template() {
-            local source_file="$1"
-            local dest_file="$2"
-            
-            # Skip frontmatter (lines between --- markers) and copy rest
-            awk '
-                BEGIN { in_frontmatter = 0; frontmatter_ended = 0 }
-                /^---$/ { 
-                    if (!frontmatter_ended) {
-                        in_frontmatter = !in_frontmatter
-                        if (!in_frontmatter) frontmatter_ended = 1
-                        next
-                    }
-                }
-                !in_frontmatter && frontmatter_ended { print }
-            ' "$source_file" > "$dest_file"
-        }
-        
-        # Copy and clean each template with proper naming
+        # Copy each template with proper naming
         # Map template files to final names without -template suffix
-        
+
         for template in "$templates_dir"/*.md; do
             if [[ -f "$template" ]]; then
                 local template_basename final_name
                 template_basename="$(basename "$template")"
-                
+
                 # Map template names to final names
                 case "$template_basename" in
                     "learning-spec-template.md")
@@ -291,10 +272,10 @@ main() {
                         final_name=""
                         ;;
                 esac
-                
+
                 if [[ -n "$final_name" ]]; then
-                    clean_template "$template" "$session_full_path/$final_name"
-                    log "Copied and cleaned: $template_basename → $final_name"
+                    cp "$template" "$session_full_path/$final_name"
+                    log "Copied: $template_basename → $final_name"
                 fi
             fi
         done
